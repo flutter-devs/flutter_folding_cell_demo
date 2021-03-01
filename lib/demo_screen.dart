@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 class DemoScreen extends StatefulWidget {
-
   @override
   _DemoScreenState createState() => _DemoScreenState();
 }
@@ -14,22 +13,24 @@ class _DemoScreenState extends State<DemoScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _technologyList = [
-      TechnologyModel(title: "Application Development",
+      TechnologyModel(
+        title: "Application Development",
       ),
-      TechnologyModel(title: "Research & Development",
+      TechnologyModel(
+        title: "Research & Development",
       ),
-      TechnologyModel(title: "Big Data & Analytics",
+      TechnologyModel(
+        title: "Big Data & Analytics",
       ),
-      TechnologyModel(title: "Support Services",
+      TechnologyModel(
+        title: "Support Services",
       ),
-      TechnologyModel(title: "QA & Software Testing",
+      TechnologyModel(
+        title: "QA & Software Testing",
       ),
-
     ];
-
   }
 
   @override
@@ -38,8 +39,10 @@ class _DemoScreenState extends State<DemoScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.pink[200],
-        title: Text("Folding Cell Demo",
-          style: TextStyle(color: Colors.white),),
+        title: Text(
+          "Folding Cell Demo",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Container(
         child: ListView.builder(
@@ -66,24 +69,26 @@ class _DemoScreenState extends State<DemoScreen> {
     return Builder(
       builder: (BuildContext context) {
         return Container(
-          color:  Colors.cyan[100],
+          color: Colors.cyan[100],
           alignment: Alignment.bottomCenter,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Aeologic Technology",
+                '${_technologyList[index].title}',
                 style: GoogleFonts.aldrich(
                   color: Color(0xFF2e282a),
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10,),
-              FlatButton(
+              SizedBox(
+                height: 10,
+              ),
+              MaterialButton(
                 onPressed: () {
-                  final foldingCellState = context
-                      .findAncestorStateOfType<SimpleFoldingCellState>();
+                  final foldingCellState =
+                      context.findAncestorStateOfType<SimpleFoldingCellState>();
                   foldingCellState?.toggleFold();
                 },
                 child: Text(
@@ -101,30 +106,28 @@ class _DemoScreenState extends State<DemoScreen> {
   }
 
   Widget _buildInnerBottomWidget() {
-    return Builder(
-        builder: (context) {
-          return Container(
-            color: Colors.blueGrey[50],
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 10),
-              child: FlatButton(
-                onPressed: () {
-                  final foldingCellState = context
-                      .findAncestorStateOfType<SimpleFoldingCellState>();
-                  foldingCellState?.toggleFold();
-                },
-                child: Text(
-                  "Close",
-                ),
-                textColor: Colors.white,
-                color: Colors.redAccent[100],
-                splashColor: Colors.white.withOpacity(0.5),
-              ),
+    return Builder(builder: (context) {
+      return Container(
+        color: Colors.blueGrey[50],
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 10),
+          child: MaterialButton(
+            onPressed: () {
+              final foldingCellState =
+                  context.findAncestorStateOfType<SimpleFoldingCellState>();
+              foldingCellState?.toggleFold();
+            },
+            child: Text(
+              "Close",
             ),
-          );
-        }
-    );
+            textColor: Colors.white,
+            color: Colors.redAccent[100],
+            splashColor: Colors.white.withOpacity(0.5),
+          ),
+        ),
+      );
+    });
   }
 
   Widget _buildInnerWidget(int index) {
